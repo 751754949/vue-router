@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Promise 的用法</h1>
+    <script>
+        let checkLogin = function () {
+            return new Promise(function (resolve, reject) {
+                let flag = document.cookie.indexOf("userId") > -1 ? true : false;
+                if (flag) {
+                    resolve({
+                        status: 0,
+                        result: true
+                    });
+                } else {
+                    reject("err");
+                }
+            })
+        }
+        checkLogin().then(function (res) {
+            if(res.status == 0){
+                console.log("login success");
+            }
+        }).catch(err =>{
+            console.log(`error:${err}`);
+        });
+    </script>
+</body>
+</html>
